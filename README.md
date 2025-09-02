@@ -42,7 +42,10 @@ permissions:
 
 jobs:
   build-docs:
-    uses: nikita-volkov/deploy-dhall-docs-to-github-pages.github-actions-workflow/.github/workflows/main.yaml@v0.1
+    uses: nikita-volkov/deploy-dhall-docs-to-github-pages.github-actions-workflow/.github/workflows/main.yaml@main
+    with:
+      input: src  # Optional: Path to your Dhall source directory (default: src)
+      package-name: my-dhall-package  # Optional: Package name for documentation
     secrets: inherit
 ```
 
@@ -53,9 +56,37 @@ jobs:
 
 ## Configuration Options
 
+The workflow accepts the following inputs that you can customize:
+
 ### `input`
 
-If your Dhall files are not in a `src` directory, modify the `input` parameter:
+**Description**: Path to the directory containing your Dhall source files  
+**Required**: No  
+**Default**: `src`
+
+**Example**:
+```yaml
+jobs:
+  build-docs:
+    uses: nikita-volkov/deploy-dhall-docs-to-github-pages.github-actions-workflow/.github/workflows/main.yaml@main
+    with:
+      input: dhall-src  # If your Dhall files are in 'dhall-src' instead of 'src'
+```
+
+### `package-name`
+
+**Description**: Name of your Dhall package to display in the generated documentation  
+**Required**: No  
+**Default**: None
+
+**Example**:
+```yaml
+jobs:
+  build-docs:
+    uses: nikita-volkov/deploy-dhall-docs-to-github-pages.github-actions-workflow/.github/workflows/main.yaml@main
+    with:
+      package-name: my-awesome-dhall-library
+```
 
 ## Permissions
 
@@ -75,4 +106,4 @@ These are automatically granted when you use the provided workflow configuration
 
 **🔒 Permission denied**: Verify that the `pages: write` and `id-token: write` permissions are set in your workflow.
 
-**📁 No Dhall files found**: Check that your Dhall files are in the correct directory (default: `src`) or update the `input` parameter.
+**📁 No Dhall files found**: Check that your Dhall files are in the correct directory (default: `src`) or update the `input` parameter in your workflow configuration.

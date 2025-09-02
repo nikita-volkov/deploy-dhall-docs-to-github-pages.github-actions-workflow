@@ -2,6 +2,27 @@ name: Deploy Dhall Documentation to GitHub Pages
 
 on:
   workflow_dispatch:
+    inputs:
+      input:
+        description: 'Path to Dhall source directory'
+        required: false
+        default: 'src'
+        type: string
+      package-name:
+        description: 'Package name for the documentation'
+        required: false
+        type: string
+  workflow_call:
+    inputs:
+      input:
+        description: 'Path to Dhall source directory'
+        required: false
+        default: 'src'
+        type: string
+      package-name:
+        description: 'Package name for the documentation'
+        required: false
+        type: string
 
 # Prevent overlapping publishes on rapid pushes
 concurrency:
@@ -26,7 +47,8 @@ jobs:
         id: generate-docs
         uses: nikita-volkov/dhall-docs.github-action@v0.3
         with:
-          input: src
+          input: ${{ inputs.input || 'src' }}
+          package-name: ${{ inputs.package-name }}
 
       - name: Upload artifact for Pages
         uses: actions/upload-pages-artifact@v4
