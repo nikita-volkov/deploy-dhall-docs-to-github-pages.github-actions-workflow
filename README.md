@@ -42,7 +42,7 @@ permissions:
 
 jobs:
   build-docs:
-    uses: nikita-volkov/deploy-dhall-docs-to-github-pages.github-actions-workflow/.github/workflows/main.yaml@v0.1
+    uses: nikita-volkov/deploy-dhall-docs-to-github-pages.github-actions-workflow/.github/workflows/main.yaml@v1
     secrets: inherit
 ```
 
