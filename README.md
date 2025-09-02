@@ -30,25 +30,12 @@ on:
   # Allow manual triggering
   workflow_dispatch:
 
-# Prevent overlapping publishes on rapid pushes
-concurrency:
-  group: deploy-dhall-docs-to-github-pages
-  cancel-in-progress: true
-
-permissions:
-  # To checkout the repository
-  contents: read
-  # To deploy to GitHub Pages
-  pages: write
-  # For secure authentication with GitHub Pages
-  id-token: write
-
 jobs:
   build-docs:
     uses: nikita-volkov/deploy-dhall-docs-to-github-pages.github-actions-workflow/.github/workflows/main.yaml@v1
     with:
-      input: src  # Optional: Path to your Dhall source directory (default: .)
-      package-name: my-dhall-package  # Optional: Package name for documentation
+      input: src # Optional: Path to your Dhall source directory (default: .)
+      package-name: typeclasses # Optional: Package name for documentation
     secrets: inherit
 ```
 
@@ -71,9 +58,9 @@ The workflow accepts the following inputs that you can customize:
 ```yaml
 jobs:
   build-docs:
-    uses: nikita-volkov/deploy-dhall-docs-to-github-pages.github-actions-workflow/.github/workflows/main.yaml@main
+    uses: nikita-volkov/deploy-dhall-docs-to-github-pages.github-actions-workflow/.github/workflows/main.yaml@v1
     with:
-      input: dhall-src  # If your Dhall files are in 'dhall-src' instead of 'src'
+      input: dhall-src  # If your Dhall files are in 'dhall-src'
 ```
 
 ### `package-name`
@@ -86,7 +73,7 @@ jobs:
 ```yaml
 jobs:
   build-docs:
-    uses: nikita-volkov/deploy-dhall-docs-to-github-pages.github-actions-workflow/.github/workflows/main.yaml@main
+    uses: nikita-volkov/deploy-dhall-docs-to-github-pages.github-actions-workflow/.github/workflows/main.yaml@v1
     with:
       package-name: my-awesome-dhall-library
 ```
