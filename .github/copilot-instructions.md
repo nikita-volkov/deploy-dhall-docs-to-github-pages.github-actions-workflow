@@ -14,8 +14,10 @@ This repository contains a reusable GitHub Actions workflow for automatically de
 
 The GitHub Actions workflow (`main.yaml`) performs the following operations:
 
-1. **Trigger**: Runs on `workflow_dispatch` (manual trigger)
-2. **Documentation Generation**: Uses the `nikita-volkov/dhall-docs.github-action@v0.3` action to generate documentation from a `src` directory
+1. **Triggers**: 
+   - `workflow_dispatch` (manual trigger with configurable inputs)
+   - `workflow_call` (reusable workflow that can be called from other repositories)
+2. **Documentation Generation**: Uses the `nikita-volkov/dhall-docs.github-action@v0.3` action to generate documentation from a configurable source directory
 3. **Deployment**: Uploads the generated documentation to GitHub Pages using the standard Pages deployment actions
 
 ## Key Components
@@ -24,6 +26,7 @@ The GitHub Actions workflow (`main.yaml`) performs the following operations:
 - **Concurrency**: Prevents overlapping deployments with `cancel-in-progress: true`
 - **Permissions**: Configured for GitHub Pages deployment (contents: read, pages: write, id-token: write)
 - **Environment**: Uses the `github-pages` environment
+- **Inputs**: Accepts configurable `input` (source directory) and `package-name` parameters
 
 ### Dependencies
 - `actions/checkout@v4`: For repository checkout
@@ -42,20 +45,24 @@ Dhall is a programmable configuration language that is statically typed and stro
 
 When working with this workflow:
 
-1. **Source Directory**: The workflow expects Dhall source files in a `src` directory. If your project uses a different structure, update the `input` parameter in the workflow.
+1. **Source Directory**: The workflow accepts an `input` parameter to specify the Dhall source directory (defaults to `src` if not provided).
 
-2. **Action Version**: The workflow uses `nikita-volkov/dhall-docs.github-action@v0.3`. Check for newer versions when updating.
+2. **Package Name**: The workflow accepts an optional `package-name` parameter to set the package name in the generated documentation.
 
-3. **Permissions**: Ensure your repository has GitHub Pages enabled and the workflow has appropriate permissions.
+3. **Action Version**: The workflow uses `nikita-volkov/dhall-docs.github-action@v0.3`. Check for newer versions when updating.
 
-4. **Environment**: The workflow uses the `github-pages` environment, which may require approval for deployments depending on your repository settings.
+4. **Permissions**: Ensure your repository has GitHub Pages enabled and the workflow has appropriate permissions.
+
+5. **Environment**: The workflow uses the `github-pages` environment, which may require approval for deployments depending on your repository settings.
+
+6. **Usage as Reusable Workflow**: This workflow is designed to be called from other repositories using the `workflow_call` trigger. Reference it using `@main` or a specific commit SHA.
 
 ## Usage
 
 This workflow is intended to be:
-- Copied to other repositories that need Dhall documentation deployment
+- Called as a reusable workflow from other repositories that need Dhall documentation deployment
 - Used as a reference for similar documentation workflows
-- Customized for specific project needs
+- Customized for specific project needs by passing appropriate input parameters
 
 ## Testing
 
