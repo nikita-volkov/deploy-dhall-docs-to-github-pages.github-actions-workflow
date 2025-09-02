@@ -47,7 +47,7 @@ jobs:
   build-docs:
     uses: nikita-volkov/deploy-dhall-docs-to-github-pages.github-actions-workflow/.github/workflows/main.yaml@v1
     with:
-      input: src  # Optional: Path to your Dhall source directory (default: src)
+      input: src  # Optional: Path to your Dhall source directory (default: .)
       package-name: my-dhall-package  # Optional: Package name for documentation
     secrets: inherit
 ```
@@ -65,7 +65,7 @@ The workflow accepts the following inputs that you can customize:
 
 **Description**: Path to the directory containing your Dhall source files  
 **Required**: No  
-**Default**: `src`
+**Default**: `.`
 
 **Example**:
 ```yaml

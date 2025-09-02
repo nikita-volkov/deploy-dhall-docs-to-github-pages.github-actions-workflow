@@ -6,7 +6,7 @@ on:
       input:
         description: Path to Dhall source directory
         required: false
-        default: 'src'
+        default: .
         type: string
       package-name:
         description: Package name for the documentation
