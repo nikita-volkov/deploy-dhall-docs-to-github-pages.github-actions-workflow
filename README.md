@@ -53,16 +53,9 @@ jobs:
 
 ## Configuration Options
 
-### Custom Source Directory
+### `input`
 
 If your Dhall files are not in a `src` directory, modify the `input` parameter:
-
-```yaml
-- name: Generate docs
-  uses: nikita-volkov/dhall-docs.github-action@v0.3
-  with:
-    input: path/to/your/dhall/files
-```
 
 ## Permissions
 
