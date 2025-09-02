@@ -36,8 +36,11 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
+  # To checkout the repository
   contents: read
+  # To deploy to GitHub Pages
   pages: write
+  # For secure authentication with GitHub Pages
   id-token: write
 
 jobs:
@@ -87,16 +90,6 @@ jobs:
     with:
       package-name: my-awesome-dhall-library
 ```
-
-## Permissions
-
-The workflow requires the following permissions:
-
-- `contents: read` - To checkout the repository
-- `pages: write` - To deploy to GitHub Pages
-- `id-token: write` - For secure authentication with GitHub Pages
-
-These are automatically granted when you use the provided workflow configuration.
 
 ## Troubleshooting
 

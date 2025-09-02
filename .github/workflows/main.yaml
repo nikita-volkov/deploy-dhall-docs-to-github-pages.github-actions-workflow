@@ -1,26 +1,15 @@
 name: Deploy Dhall Documentation to GitHub Pages
 
 on:
-  workflow_dispatch:
-    inputs:
-      input:
-        description: 'Path to Dhall source directory'
-        required: false
-        default: 'src'
-        type: string
-      package-name:
-        description: 'Package name for the documentation'
-        required: false
-        type: string
   workflow_call:
     inputs:
       input:
-        description: 'Path to Dhall source directory'
+        description: Path to Dhall source directory
         required: false
         default: 'src'
         type: string
       package-name:
-        description: 'Package name for the documentation'
+        description: Package name for the documentation
         required: false
         type: string
 
@@ -47,7 +36,7 @@ jobs:
         id: generate-docs
         uses: nikita-volkov/dhall-docs.github-action@v0.3
         with:
-          input: ${{ inputs.input || 'src' }}
+          input: ${{ inputs.input }}
           package-name: ${{ inputs.package-name }}
 
       - name: Upload artifact for Pages
