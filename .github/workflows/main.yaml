@@ -1,0 +1,38 @@
+name: Deploy Dhall Documentation to GitHub Pages
+
+on:
+  workflow_dispatch:
+
+# Prevent overlapping publishes on rapid pushes
+concurrency:
+  group: deploy-dhall-docs-to-github-pages
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate docs
+        id: generate-docs
+        uses: nikita-volkov/dhall-docs.github-action@v0.3
+        with:
+          input: src
+
+      - name: Upload artifact for Pages
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ${{ steps.generate-docs.outputs.path }}
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
