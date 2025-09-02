@@ -34,7 +34,7 @@ jobs:
 
       - name: Generate docs
         id: generate-docs
-        uses: nikita-volkov/dhall-docs.github-action@v0.3
+        uses: nikita-volkov/dhall-docs.github-action@v1
         with:
           input: ${{ inputs.input }}
           package-name: ${{ inputs.package-name }}
