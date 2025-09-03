@@ -1,6 +1,6 @@
 # Deploy Dhall Documentation to GitHub Pages
 
-A GitHub Actions workflow template for automatically generating and deploying Dhall documentation to GitHub Pages.
+A GitHub Actions workflow for automatically generating and deploying Dhall documentation to GitHub Pages.
 
 ## Overview
 
