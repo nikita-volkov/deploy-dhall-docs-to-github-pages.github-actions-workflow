@@ -78,6 +78,20 @@ jobs:
       package-name: my-awesome-dhall-library
 ```
 
+## In the Wild
+
+Here are some real-world examples of projects using this workflow:
+
+### [typeclasses.dhall](https://github.com/nikita-volkov/typeclasses.dhall)
+
+A comprehensive typeclass library for the Dhall configuration language. This project demonstrates typical usage of the workflow:
+
+- **Repository**: [nikita-volkov/typeclasses.dhall](https://github.com/nikita-volkov/typeclasses.dhall)
+- **Workflow Configuration**: [deploy-docs-to-pages.yaml](https://github.com/nikita-volkov/typeclasses.dhall/blob/master/.github/workflows/deploy-docs-to-pages.yaml)
+- **Generated Documentation**: [nikita-volkov.github.io/typeclasses.dhall](https://nikita-volkov.github.io/typeclasses.dhall/)
+
+The project uses this workflow to automatically generate and deploy documentation from Dhall source files located in the `src/` directory, with `typeclasses` as the package name. The workflow triggers on pushes to the main branch and can also be run manually.
+
 ## Troubleshooting
 
 ### Common Issues
